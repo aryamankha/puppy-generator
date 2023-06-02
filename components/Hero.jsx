@@ -17,7 +17,7 @@ export const Hero = () => {
     <>
       <div className="flex flex-col gap-10 items-center justify-center h-screen">
         <h1 className="text-4xl font-bold text-center">Cute Puppy Generator</h1>
-        <div className="h-1/2">
+        <div className="relative h-1/2 rounded-lg overflow-hidden shadow-md">
           <img src={puppyUrl} alt="puppy" className="mb-4 h-full" />
         </div>
         <button
