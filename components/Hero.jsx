@@ -9,7 +9,9 @@ export const Hero = () => {
     setPuppyUrl((await axios.get("/api/get-puppies")).data.puppy_urls);
   };
 
-  const [puppyUrl, setPuppyUrl] = useState("");
+  const [puppyUrl, setPuppyUrl] = useState(
+    "https://www.greencrossvets.com.au/wp-content/uploads/2022/01/Dachshund-Dog-Breed-1-683x1024.jpg"
+  );
 
   return (
     <>
@@ -24,7 +26,7 @@ export const Hero = () => {
           className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"
           onClick={handleSubmit}
         >
-          Generate Puppy
+          Puppy!
         </button>
       </div>
     </>
