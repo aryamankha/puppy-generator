@@ -1,5 +1,6 @@
 import "aos/dist/aos.css";
 import "../styles/globals.css";
+import { Analytics } from "@vercel/analytics/react";
 
 import AOS from "aos";
 import Head from "next/head";
@@ -13,7 +14,7 @@ if (typeof window !== "undefined" && process.env.NODE_ENV === "development") {
   import("vivid-studio/style.css");
 }
 
-const siteTitle = "Cute puppies - Click a button, see a puppy";
+const siteTitle = "Cute puppies - Click a button. See a puppy";
 const siteDescription = "My girlfriend really likes puppies. You will too. ";
 
 const App = ({ Component, pageProps }) => {
@@ -68,6 +69,7 @@ const App = ({ Component, pageProps }) => {
         isDarkMode={isDarkMode}
         toggleDarkMode={toggleDarkMode}
       />
+      <Analytics />
     </>
   );
 };
