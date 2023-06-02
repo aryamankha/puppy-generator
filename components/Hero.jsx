@@ -15,11 +15,18 @@ export const Hero = () => {
 
   return (
     <>
-      <div className="flex flex-col gap-10 items-center justify-center h-screen">
+      <div className="flex flex-col gap-10 items-center justify-center h-screen m-4">
         <h1 className="text-4xl font-bold text-center">Cute Puppy Generator</h1>
-        <div className="relative h-1/2 rounded-lg overflow-hidden shadow-md">
-          <img src={puppyUrl} alt="puppy" className="mb-4 h-full" />
+        <div className="h-1/2 overflow-y-scroll">
+          <div className="relative overflow-hidden rounded-lg shadow-md flex justify-center items-center h-full w-full">
+            <img
+              src={puppyUrl}
+              alt="puppy"
+              className="mb-4 rounded-lg shadow-md"
+            />
+          </div>
         </div>
+
         <button
           className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"
           onClick={handleSubmit}
