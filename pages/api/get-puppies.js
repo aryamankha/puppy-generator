@@ -6,7 +6,6 @@ const handler = async (req, res) => {
   axios.get(SHEETDB_URL).then((response) => {
     const urls = response.data;
     const index = Math.floor(Math.random() * urls.length);
-    console.log(urls[index]);
     res.status(200).json(urls[index]);
   });
 };
