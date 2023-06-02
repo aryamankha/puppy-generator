@@ -47,14 +47,14 @@ export const Hero = () => {
             <input
               type="text"
               placeholder="Ex. Brownie"
-              className="bg-gray-200 w-full p-4"
+              className="bg-gray-200 w-full p-4 rounded-l-lg"
               onChange={(e) => {
                 setTempPuppyName(e.target.value);
               }}
             />
             <button
               onClick={setName}
-              className="bg-blue-500 w-1/2 sm:w-1/4 hover:bg-blue-700 text-white shadow-md font-bold p-4 "
+              className="bg-blue-500 w-1/2 sm:w-1/4 hover:bg-blue-700 text-white shadow-md font-bold p-4 rounded-r-lg "
             >
               Name me!
             </button>
