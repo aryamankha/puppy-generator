@@ -5,9 +5,8 @@ import ConfettiExplosion from 'react-confetti-explosion';
 
 // Built with Vivid (https://vivid.lol) ⚡️
 
-
-
-export const Hero = () => {
+export const Hero = (props) => {
+  const { puppyData } = props;
   const [puppyUrl, setPuppyUrl] = useState(
     "https://www.greencrossvets.com.au/wp-content/uploads/2022/01/Dachshund-Dog-Breed-1-683x1024.jpg"
   );
@@ -26,11 +25,11 @@ export const Hero = () => {
     state.setFailureState,
   ]);
   const [nameJustSet, setNameJustSet] = useState(false);
-  
 
   const newPuppy = async (e) => {
     e.preventDefault();
-    const puppyInfo = (await axios.get("/api/get-puppies")).data;
+    const index = Math.floor(Math.random() * puppyData.length);
+    const puppyInfo = puppyData[index];
     setPuppyId(puppyInfo.id);
     setPuppyUrl(puppyInfo.puppy_urls);
     setPuppyName(puppyInfo.name);
