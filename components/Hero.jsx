@@ -52,7 +52,7 @@ export const Hero = (props) => {
 
       const checkName = async (e) => {
         e.preventDefault();
-        if (puppyName.toLowerCase() == tempPuppyName.toLowerCase()){
+        if (puppyName.trim().toLowerCase() == tempPuppyName.trim().toLowerCase()){
             setSuccessState(true);
             setStreak(streak + 1);
         } else {
@@ -126,7 +126,7 @@ export const Hero = (props) => {
 
   return (
     <>
-      <div className="flex flex-col gap-6 items-center justify-center h-screen m-4 mt-0 sm:mt-4">
+      <div className="flex flex-col gap-6 items-center justify-center h-screen m-4 mt-0 sm:mt-4 overflow-hidden">
         {successState && <ConfettiExplosion height = "200vh"/>}
         <h1 className="text-4xl font-bold text-center">Cute Puppy Generator</h1>
         {(!gameState ||
