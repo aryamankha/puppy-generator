@@ -125,7 +125,7 @@ export const Hero = () => {
 
   return (
     <>
-      <div className="flex flex-col gap-6 items-center justify-center h-screen m-4 mt-0 sm:mt-4">
+      <div className="flex flex-col gap-6 items-center justify-center m-4 mt-0 h-full sm:mt-4">
         {successState && <ConfettiExplosion height = "200vh"/>}
         <h1 className="text-4xl font-bold text-center">Cute Puppy Generator</h1>
         {(!gameState ||
