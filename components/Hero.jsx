@@ -46,15 +46,21 @@ export const Hero = () => {
         state.successState,
         state.setSuccessState,
       ]);
+      const [streak, setStreak] = useStore((state) => [
+        state.streak,
+        state.setStreak,
+      ]);
 
       const checkName = async (e) => {
         e.preventDefault();
         if (puppyName.toLowerCase() == tempPuppyName.toLowerCase()){
             setSuccessState(true);
+            setStreak(streak + 1);
         } else {
             setNumTries(numTries + 1);
             if (numTries == 1){
                 setFailureState(true);
+                setStreak(0);
             }
         }
         setTempPuppyName("");
@@ -119,20 +125,36 @@ export const Hero = () => {
 
   return (
     <>
-      <div className="flex flex-col gap-6 items-center justify-center h-screen m-4">
-      {successState && <ConfettiExplosion/>}
+      <div className="flex flex-col gap-6 items-center justify-center h-screen m-4 ">
+        {successState && <ConfettiExplosion />}
         <h1 className="text-4xl font-bold text-center">Cute Puppy Generator</h1>
-       {(!gameState || successState || failureState || puppyName === "" || nameJustSet) && <p className="text-xl text-center">
-          {puppyName == ""
-            ? "I don't have a name yet 🥺"
-            : "Hi 🐶 My name is " + puppyName + "!"}
-        </p>}
+        {(!gameState ||
+          successState ||
+          failureState ||
+          puppyName === "" ||
+          nameJustSet) && (
+          <p className="text-xl text-center">
+            {puppyName == ""
+              ? "I don't have a name yet 🥺"
+              : "Hi 🐶 My name is " + puppyName + "!"}
+          </p>
+        )}
         <div className="h-1/2 overflow-y-scroll">
           <div className="relative overflow-hidden rounded-lg shadow-md flex justify-center items-center h-full w-full">
             <img src={puppyUrl} alt="puppy" className="mb-4 rounded-lg shadow-md" />
           </div>
         </div>
-        {gameState && puppyName != "" ? ( successState ?  <p className="text-3xl">You got it right! 😍 </p>: (failureState ? <p className="text-3xl">Better luck next time 😔 </p> : <GameInput/>)) : <NamingInput/>}
+        {gameState && puppyName != "" && !nameJustSet ? (
+          successState ? (
+            <p className="text-3xl">You got it right! 😍 </p>
+          ) : failureState ? (
+            <p className="text-3xl">Better luck next time 😔 </p>
+          ) : (
+            <GameInput />
+          )
+        ) : (
+          <NamingInput />
+        )}
         <button
           className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-4 px-8 rounded-md"
           onClick={newPuppy}
