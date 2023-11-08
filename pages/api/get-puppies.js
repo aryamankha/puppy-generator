@@ -7,6 +7,8 @@ const handler = async (req, res) => {
     const urls = response.data;
     const index = Math.floor(Math.random() * urls.length);
     res.status(200).json(urls[index]);
+  }).catch((error) => {
+    res.status(500).json(error);
   });
 };
 
