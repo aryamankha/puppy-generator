@@ -67,25 +67,26 @@ export const Hero = (props) => {
 
       return (
         <>
-          <div className="flex flex-row items-center w-full sm:w-1/2 justify-center m-4 shadow-md rounded-lg overflow-hidden">
+          <form onSubmit={checkName} className="flex flex-row items-center w-full sm:w-1/2 justify-center m-4 shadow-md rounded-lg overflow-hidden">
             <input
               type="text"
               placeholder="Ex. Brownie"
               className="bg-gray-200 w-full p-4 text-black rounded-l-lg"
+              value = {tempPuppyName}
               onChange={(e) => {
                 setTempPuppyName(e.target.value);
               }}
             />
             <button
+              type="submit"
               className="bg-blue-500 w-1/2 sm:w-1/4 hover:bg-blue-700 text-white shadow-md font-bold p-4 rounded-r-lg "
-              onClick={checkName}
             >
-            Guess!
+              Guess!
             </button>
-          </div>
+          </form>
           {numTries == 1 && (
-          <p>Hint: It starts with {puppyName[0]}</p>
-        )}
+            <p>Hint: It starts with {puppyName[0]}</p>
+          )}
         </>
       )
   }
@@ -102,11 +103,12 @@ export const Hero = (props) => {
 
     return (
       puppyName == "" ? (
-          <div className="flex flex-row items-center w-full sm:w-1/2 justify-center m-4 shadow-md rounded-lg overflow-hidden">
+          <form className="flex flex-row items-center w-full sm:w-1/2 justify-center m-4 shadow-md rounded-lg overflow-hidden">
             <input
               type="text"
               placeholder="Ex. Brownie"
               className="bg-gray-200 w-full p-4 text-black rounded-l-lg"
+              value={tempPuppyName}
               onChange={(e) => {
                 setTempPuppyName(e.target.value);
               }}
@@ -117,7 +119,7 @@ export const Hero = (props) => {
             >
               Name me!
             </button>
-          </div>
+          </form>
           ) : null
       )
   }
