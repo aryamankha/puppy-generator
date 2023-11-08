@@ -25,7 +25,7 @@ export const NavBar = () => {
         <div
           className={`flex flex-row w-full h-fit ${
             gameState ? "justify-between" : "justify-end"
-          } px-10 pt-5 pb-1`}
+          } px-10 pt-5 pb-1 overflow-hidden`}
         >
           {gameState && <p>Streak: {streak}</p>}
           <Switch.Root
