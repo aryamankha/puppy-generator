@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import { useStore } from "../components/NavBar";
 import ConfettiExplosion from 'react-confetti-explosion';
@@ -6,7 +6,7 @@ import ConfettiExplosion from 'react-confetti-explosion';
 // Built with Vivid (https://vivid.lol) ⚡️
 
 export const Hero = (props) => {
-  const { puppyData } = props;
+  const { puppyData, originalMaxStreak } = props;
   const [puppyUrl, setPuppyUrl] = useState(
     "https://www.greencrossvets.com.au/wp-content/uploads/2022/01/Dachshund-Dog-Breed-1-683x1024.jpg"
   );
@@ -26,6 +26,10 @@ export const Hero = (props) => {
   ]);
   const [nameJustSet, setNameJustSet] = useState(false);
 
+  const [setMaxStreak]  = useStore((state) => [
+    state.setMaxStreak,
+  ]);
+
   const newPuppy = async (e) => {
     e.preventDefault();
     const index = Math.floor(Math.random() * puppyData.length);
@@ -41,19 +45,26 @@ export const Hero = (props) => {
   const GameInput = () => {
       const [tempPuppyName, setTempPuppyName] = useState("");
       const [numTries, setNumTries] = useState(0);
-      const [successState, setSuccessState] = useStore((state) => [
-        state.successState,
+      const [setSuccessState] = useStore((state) => [
         state.setSuccessState,
       ]);
       const [streak, setStreak] = useStore((state) => [
         state.streak,
         state.setStreak,
       ]);
+      const [maxStreak, setMaxStreak] = useStore((state) => [ 
+        state.maxStreak,
+        state.setMaxStreak,
+      ]);
 
       const checkName = async (e) => {
         e.preventDefault();
         if (puppyName.trim().toLowerCase() == tempPuppyName.trim().toLowerCase()){
             setSuccessState(true);
+            if ((streak + 1) > maxStreak) {
+                await axios.post("/api/set-max-streak", { streak: streak + 1, id: "streak"});
+                setMaxStreak(streak + 1);
+            }
             setStreak(streak + 1);
         } else {
             setNumTries(numTries + 1);
@@ -123,6 +134,11 @@ export const Hero = (props) => {
           ) : null
       )
   }
+
+  useEffect(() => {
+    setMaxStreak(originalMaxStreak);
+  }
+  , []);
 
   return (
     <>
